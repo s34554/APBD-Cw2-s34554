@@ -2,9 +2,11 @@
 
 public class Laptop : Device
 {
-    // public Laptop(string name)
+    // public Laptop(string name, int price, int latefee = 10, bool available = true)
     // {
     //     Name = name;
-    //     LateFee =  10;
+    //     PricePerDay = price;
+    //     LateFeePerDay =  latefee;
+    //     Available = available;
     // }
 }

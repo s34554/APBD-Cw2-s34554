@@ -4,6 +4,7 @@ public abstract class Device
 {
     public string Id { get; } = Guid.NewGuid().ToString();
     public required string Name { get; set; }
-    public int LateFee { get; set; } //per day
-    public bool Available { get; set; } =  true;
+    public float PricePerDay { get; protected init; }
+    public float LateFeePerDay { get; protected init; }
+    public bool Available { get; set; }
 }

@@ -6,6 +6,7 @@ public class User(string name, string lastname, UserType type)
     public required string Name { get; set; } = name;
     public required string LastName { get; set; } = lastname;
     public required UserType Type { get; set; } = type;
+    public List<Device> RentedDevices { get; } = [];
     public List<RentInstance> ActiveRentInstances { get; } = [];
     public List<RentInstance> RentInstancesHistory { get; } = [];
     public int ActiveRentCount { get; set; } = 0;

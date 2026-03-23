@@ -38,10 +38,4 @@ public class RentInstance(Device deviceRented, DateOnly rentDate, DateOnly retur
                ", Total price: " + TotalPrice +
                ", Back on time: " + BackOnTime;
     }
-
-    public bool IsLate()
-    {
-        var currentDate = DateOnly.FromDateTime(DateTime.Now);
-        return currentDate >= RentDate && currentDate <= ReturnDate;
-    }
 }

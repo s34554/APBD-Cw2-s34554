@@ -18,10 +18,10 @@ public class Projector : Device
     {
         var availability = Available ? " Available" : " Not Available";
         return Name +
-               "Lumens: " + Lumens +
-               "Resolution: " + Resolution + 
-               "Price: " + PricePerDay +
-               "Late fee: " + LateFeePerDay +
-               availability;
+               " Lumens: " + Lumens +
+               " Resolution: " + Resolution + 
+               " Price: " + PricePerDay +
+               " Late fee: " + LateFeePerDay +
+               " " + availability;
     }
 }

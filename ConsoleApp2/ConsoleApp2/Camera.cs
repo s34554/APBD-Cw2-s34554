@@ -18,10 +18,10 @@ public class Camera : Device
     {
         var availability = Available ? " Available" : " Not Available";
         return Name +
-               "MP: " + Megapixels +
-               "Lens Mount: " + LensMount +
-               "Price: " + PricePerDay +
-               "Late fee: " + LateFeePerDay +
-               availability;
+               " MP: " + Megapixels +
+               " Lens Mount: " + LensMount +
+               " Price: " + PricePerDay +
+               " Late fee: " + LateFeePerDay +
+               " " + availability;
     }
 }

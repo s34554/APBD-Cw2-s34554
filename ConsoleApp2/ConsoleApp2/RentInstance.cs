@@ -1,8 +1,8 @@
 ﻿namespace ConsoleApp2;
 
-public class RentInstance(Device deviceRented, DateOnly returnDate)
+public class RentInstance(Device deviceRented, DateOnly rentDate, DateOnly returnDate)
 {
-    public DateOnly RentDate { get; init; } = DateOnly.FromDateTime(DateTime.Now);
+    public DateOnly RentDate { get; init; } = rentDate;
     public DateOnly ReturnDate { get; } = returnDate;
     public Device DeviceRented { get; } = deviceRented;
     public float TotalPrice { get; set; }
@@ -22,5 +22,26 @@ public class RentInstance(Device deviceRented, DateOnly returnDate)
             BackOnTime = true;
         }
         TotalPrice =  baseDays * DeviceRented.PricePerDay + lateDays * DeviceRented.LateFeePerDay;
+    }
+
+    public string OnlyDateAndDevice()
+    {
+        return "Rent date: " + RentDate + 
+               "Return date: " + ReturnDate + 
+               "Device rented: " + DeviceRented;
+    }
+    public override string ToString()
+    {
+        return "Rent date: " + RentDate +
+               "Return date: " + ReturnDate +
+               "Device rented: " + DeviceRented +
+               "Total price: " + TotalPrice +
+               "Back on time: " + BackOnTime;
+    }
+
+    public bool IsLate()
+    {
+        var currentDate = DateOnly.FromDateTime(DateTime.Now);
+        return currentDate >= RentDate && currentDate <= ReturnDate;
     }
 }

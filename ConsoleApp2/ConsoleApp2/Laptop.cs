@@ -19,9 +19,9 @@ public class Laptop : Device
         var availability = Available ? " Available" : " Not Available";
         return Name +
                "Processor: " + Processor +
-               "RamGb " + RamGb +
-               "Price: " + PricePerDay +
-               "Late fee: " + LateFeePerDay +
-               availability;
+               " RamGb " + RamGb +
+               " Price: " + PricePerDay +
+               " Late fee: " + LateFeePerDay +
+               " " + availability;
     }
 }

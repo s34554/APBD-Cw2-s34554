@@ -1,3 +1,3 @@
 ﻿using ConsoleApp2;
 
-new ConsoleUI().Run();
+new ConsoleUi().Run();

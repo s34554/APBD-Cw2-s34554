@@ -64,7 +64,7 @@ public class Service
         return OperationResult.Ok($"'{deviceName}' marked as unavailable");
     }
 
-    public static void PrintAll()
+    public void PrintAll()
     {
         Console.WriteLine("All devices:");
         foreach (var d in Devices)

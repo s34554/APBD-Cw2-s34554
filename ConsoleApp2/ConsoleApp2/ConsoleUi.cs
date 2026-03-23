@@ -1,6 +1,6 @@
 ﻿namespace ConsoleApp2;
 
-public class ConsoleUI
+public class ConsoleUi
 {
     private readonly Service _service = new();
 
@@ -9,7 +9,7 @@ public class ConsoleUI
         Console.WriteLine("=== University Equipment Rental System ===\n");
         SeedData();
 
-        bool running = true;
+        var running = true;
         while (running)
         {
             PrintMenu();
@@ -21,7 +21,7 @@ public class ConsoleUI
         Console.WriteLine("Goodbye!");
     }
 
-    private void PrintMenu()
+    private static void PrintMenu()
     {
         Console.WriteLine("--- MENU ---");
         Console.WriteLine("1.  List all devices");
@@ -42,18 +42,18 @@ public class ConsoleUI
     {
         switch (choice)
         {
-            case "1": Service.PrintAll(); break;
-            case "2": _service.PrintAvailable(); break;
-            case "3": AddUser(); break;
-            case "4": PrintUsers(); break;
-            case "5": RentDevice(); break;
-            case "6": ReturnDevice(); break;
-            case "7": MakeUnavailable(); break;
-            case "8": PrintActiveRentsForUser(); break;
-            case "9": PrintLateRentsForUser(); break;
-            case "10": _service.PrintReport(); break;
-            case "0": return false;
-            default: Console.WriteLine("Unknown option."); break;
+            case "1":  _service.PrintAll();             break;
+            case "2":  _service.PrintAvailable();      break;
+            case "3":  AddUser();                      break;
+            case "4":  PrintUsers();                   break;
+            case "5":  RentDevice();                   break;
+            case "6":  ReturnDevice();                 break;
+            case "7":  MakeUnavailable();              break;
+            case "8":  PrintActiveRentsForUser();      break;
+            case "9":  PrintLateRentsForUser();        break;
+            case "10": _service.PrintReport();         break;
+            case "0":  return false;
+            default:   Console.WriteLine("Unknown option."); break;
         }
         return true;
     }
@@ -93,15 +93,40 @@ public class ConsoleUI
         Console.Write("Device name: ");
         var deviceName = Console.ReadLine()?.Trim() ?? "";
 
+        var device = Service.Devices.FirstOrDefault(d => d.Name == deviceName);
+        if (device is null)
+        {
+            Console.WriteLine("[ERROR] Unknown device.");
+            return;
+        }
+        if (!device.Available)
+        {
+            Console.WriteLine("[ERROR] Device is not available.");
+            return;
+        }
+        if (user.ActiveRentCount >= user.MaxActiveRentCount)
+        {
+            Console.WriteLine($"[ERROR] User has reached the limit of {user.MaxActiveRentCount} active rents.");
+            return;
+        }
+
         Console.Write("Rent date (YYYY-MM-DD, Enter = today): ");
         var rentInput = Console.ReadLine()?.Trim();
+        if (!string.IsNullOrEmpty(rentInput) && !DateOnly.TryParse(rentInput, out _))
+        {
+            Console.WriteLine("[ERROR] Invalid date format.");
+            return;
+        }
         var rentDate = string.IsNullOrEmpty(rentInput)
             ? DateOnly.FromDateTime(DateTime.Now)
             : DateOnly.Parse(rentInput);
 
         Console.Write("Planned return date (YYYY-MM-DD): ");
-        var returnInput = Console.ReadLine()?.Trim() ?? "";
-        var returnDate = DateOnly.Parse(returnInput);
+        if (!DateOnly.TryParse(Console.ReadLine()?.Trim(), out var returnDate))
+        {
+            Console.WriteLine("[ERROR] Invalid date format.");
+            return;
+        }
 
         Print(_service.Rent(user, deviceName, rentDate, returnDate));
     }
@@ -124,10 +149,16 @@ public class ConsoleUI
         Console.Write("Device name to return: ");
         var deviceName = Console.ReadLine()?.Trim() ?? "";
 
-        Console.Write("How many days was it actually used: ");
-        if (!int.TryParse(Console.ReadLine(), out var daysUsed))
+        if (user.RentedDevices.All(d => d.Name != deviceName))
         {
-            Console.WriteLine("Invalid number of days.");
+            Console.WriteLine("[ERROR] This user does not have that device rented.");
+            return;
+        }
+
+        Console.Write("How many days was it actually used: ");
+        if (!int.TryParse(Console.ReadLine(), out var daysUsed) || daysUsed < 0)
+        {
+            Console.WriteLine("[ERROR] Invalid number of days.");
             return;
         }
 

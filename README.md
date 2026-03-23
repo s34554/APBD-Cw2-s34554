@@ -29,8 +29,8 @@ ConsoleApp2/
 ## Decyzje projektowe
 
 ### Podział warstw
-Starałem się oddzielić logikę od interfejsu. Service nie ma żadnych wywołań "Console.WriteLine" - zajmuje się tylko logiką i zwraca OperationResult.
-Całe wypisywanie do konsoli jest wyłącznie w "ConsoleUI".
+Starałem się oddzielić logikę od interfejsu. Service nie ma żadnych wywołań 'Console.WriteLine' - zajmuje się tylko logiką i zwraca OperationResult.
+Całe wypisywanie do konsoli jest wyłącznie w 'ConsoleUI'.
 Dzięki temu gdyby trzeba było zmienić interfejs (np. na webowy), `Service` zostaje bez zmian.
 
 ### OperationResult
@@ -39,14 +39,14 @@ Uznałem, że to czytelniejsze niż try-catch w UI przy każdym wywołaniu.
 
 ### Kohezja
 Każda klasa ma jedno zadanie:
-- "Device" i podklasy - tylko dane, żadnej logiki
-- "RentInstance" - przechowuje dane wypożyczenia i liczy należność
-- "Service" - pilnuje reguł biznesowych
-- "ConsoleUI" - obsługuje użytkownika
-- "OperationResult" - przenosi wynik operacji między warstwami
+- 'Device' i podklasy - tylko dane, żadnej logiki
+- 'RentInstance' - przechowuje dane wypożyczenia i liczy należność
+- 'Service' - pilnuje reguł biznesowych
+- 'ConsoleUI' - obsługuje użytkownika
+- 'OperationResult' - przenosi wynik operacji między warstwami
 
 ### Coupling
-"Service" zależy tylko od klas domenowych (Device, User, RentInstance). ConsoleUI zależy tylko od Service i OperationResult.
+'Service' zależy tylko od klas domenowych ('Device', 'User', 'RentInstance'). 'ConsoleUI' zależy tylko od 'Service' i 'OperationResult'.
 Nie ma zależności w drugą stronę.
 
 ### Dziedziczenie

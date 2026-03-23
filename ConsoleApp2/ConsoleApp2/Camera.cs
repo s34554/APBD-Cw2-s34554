@@ -2,9 +2,9 @@
 
 public class Camera : Device
 {
-    public required double Megapixels;
-    public required string LensMount;
-    public Camera(string name, double megapixels, string lensMount, int price, int latefee = 5, bool available = true)
+    public double Megapixels;
+    public string LensMount;
+    public Camera(string name, double megapixels, string lensMount, int price, int latefee, bool available = true)
     {
         Name = name;
         Megapixels = megapixels;
@@ -16,12 +16,10 @@ public class Camera : Device
 
     public override string ToString()
     {
-        var availability = Available ? " Available" : " Not Available";
         return Name +
-               " MP: " + Megapixels +
-               " Lens Mount: " + LensMount +
-               " Price: " + PricePerDay +
-               " Late fee: " + LateFeePerDay +
-               " " + availability;
+               ", MP: " + Megapixels +
+               ", Lens Mount: " + LensMount +
+               ", Price per day: " + PricePerDay +
+               ", Late fee: " + LateFeePerDay;
     }
 }

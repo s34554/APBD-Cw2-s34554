@@ -72,7 +72,7 @@ public class Service
     public void PrintAll()
     {
         Console.WriteLine("All devices:");
-        foreach (var device in Devices) Console.WriteLine(device + "\n");
+        foreach (var device in Devices) Console.WriteLine(device + " " + device.PrintAvailable());
     }
     public void PrintAvailable()
     {
@@ -83,7 +83,7 @@ public class Service
     public void PrintActiveRents(User user)
     {
         if (!Users.Contains(user)) Console.WriteLine("Unknown user");
-        Console.WriteLine("Active rent instances for user: " + user);
+        Console.WriteLine("Active rent instances for user: (" + user + "):");
         foreach (var rentInstance in user.ActiveRentInstances)
         {
             Console.WriteLine(rentInstance.OnlyDateAndDevice());
@@ -108,7 +108,6 @@ public class Service
         {
             Console.WriteLine(user);
         }
-
         foreach (var user in Users)
         {
             PrintActiveRents(user);

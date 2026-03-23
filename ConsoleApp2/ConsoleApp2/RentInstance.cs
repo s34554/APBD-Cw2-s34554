@@ -27,16 +27,16 @@ public class RentInstance(Device deviceRented, DateOnly rentDate, DateOnly retur
     public string OnlyDateAndDevice()
     {
         return "Rent date: " + RentDate + 
-               "Return date: " + ReturnDate + 
-               "Device rented: " + DeviceRented;
+               ", Return date: " + ReturnDate + 
+               ", Device rented: (" + DeviceRented + ")";
     }
     public override string ToString()
     {
         return "Rent date: " + RentDate +
-               "Return date: " + ReturnDate +
-               "Device rented: " + DeviceRented +
-               "Total price: " + TotalPrice +
-               "Back on time: " + BackOnTime;
+               ", Return date: " + ReturnDate +
+               ", Device rented: (" + DeviceRented + ")" +
+               ", Total price: " + TotalPrice +
+               ", Back on time: " + BackOnTime;
     }
 
     public bool IsLate()

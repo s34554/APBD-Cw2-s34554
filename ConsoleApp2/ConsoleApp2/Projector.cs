@@ -2,9 +2,9 @@
 
 public class Projector : Device
 {
-    public required int Lumens;
-    public required string Resolution;
-    public Projector(string name, int lumens, string resolution, int price, int latefee = 15, bool available = true)
+    public int Lumens;
+    public string Resolution;
+    public Projector(string name, int lumens, string resolution, int price, int latefee, bool available = true)
     {
         Name = name;
         Lumens = lumens;
@@ -16,12 +16,10 @@ public class Projector : Device
 
     public override string ToString()
     {
-        var availability = Available ? " Available" : " Not Available";
         return Name +
-               " Lumens: " + Lumens +
-               " Resolution: " + Resolution + 
-               " Price: " + PricePerDay +
-               " Late fee: " + LateFeePerDay +
-               " " + availability;
+               ", Lumens: " + Lumens +
+               ", Resolution: " + Resolution + 
+               ", Price per day: " + PricePerDay +
+               ", Late fee: " + LateFeePerDay;
     }
 }

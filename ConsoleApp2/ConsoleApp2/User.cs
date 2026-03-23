@@ -3,9 +3,9 @@
 public class User(string name, string lastname, UserType type)
 {
     public string Id { get; } = Guid.NewGuid().ToString();
-    public required string Name { get; set; } = name;
-    public required string LastName { get; set; } = lastname;
-    public required UserType Type { get; set; } = type;
+    public string Name { get; set; } = name;
+    public string LastName { get; set; } = lastname;
+    public UserType Type { get; set; } = type;
     public List<Device> RentedDevices { get; } = [];
     public List<RentInstance> ActiveRentInstances { get; } = [];
     public List<RentInstance> RentInstancesHistory { get; } = [];
@@ -18,7 +18,7 @@ public class User(string name, string lastname, UserType type)
     };
     public override string ToString()
     {
-        return "Id: " +  Id + " Name: " + Name + " LastName: " + LastName + " Type: " + Type;
+        return "Id: " +  Id + ", Name: " + Name + ", LastName: " + LastName + ", Type: " + Type;
     }
 }
 public enum UserType

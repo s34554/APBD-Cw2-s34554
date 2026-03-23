@@ -44,4 +44,24 @@ public class Service
         user.ActiveRentInstances.Remove(rentInstance);
         user.ActiveRentCount--;
     }
+
+    public static void MakeUnavailable(string name)
+    {
+        var foundDevice = Devices.FirstOrDefault(d => d.Name == name);
+        if (foundDevice is null)
+        {
+            Console.WriteLine("Unknown device");
+            return;
+        }
+        foundDevice.Available = false;
+        Console.WriteLine(foundDevice.Name + " now marked unavailable");
+    }
+    public static void PrintAll()
+    {
+        foreach (var device in Devices) Console.WriteLine(device + "\n");
+    }
+    public static void PrintAvailable()
+    {
+        foreach (var device in Devices.Where(device => device.Available)) Console.WriteLine(device);
+    }
 }

@@ -21,6 +21,6 @@ public class RentInstance(Device deviceRented, DateOnly returnDate)
         {
             BackOnTime = true;
         }
-        TotalPrice =  baseDays * DeviceRented.PricePerDay + lateDays * deviceRented.LateFeePerDay;
+        TotalPrice =  baseDays * DeviceRented.PricePerDay + lateDays * DeviceRented.LateFeePerDay;
     }
 }

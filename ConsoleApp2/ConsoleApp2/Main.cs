@@ -1,3 +1,3 @@
 ﻿using ConsoleApp2;
 
-Console.WriteLine("Hello, World!");
+new ConsoleUI().Run();

@@ -18,7 +18,7 @@ public class User(string name, string lastname, UserType type)
     };
     public override string ToString()
     {
-        return "Id: " +  Id + ", Name: " + Name + ", LastName: " + LastName + ", Type: " + Type;
+        return "Id: " +  Id + ", Name: " + Name + ", Last Name: " + LastName + ", Type: " + Type;
     }
 }
 public enum UserType

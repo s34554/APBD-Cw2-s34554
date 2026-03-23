@@ -74,7 +74,7 @@ public class ConsoleUI
 
         var user = new User(name, lastName, type);
         _service.AddUser(user);
-        Console.WriteLine($"Added user: {user}");
+        Console.WriteLine($"Added user: ({user})");
     }
 
     private void PrintUsers()
@@ -143,7 +143,7 @@ public class ConsoleUI
 
     private static void Print(OperationResult result)
     {
-        var prefix = result.Success ? "✓" : "✗";
+        var prefix = result.Success ? "[OK]" : "[ERROR]";
         Console.WriteLine($"{prefix} {result.Message}");
     }
 
